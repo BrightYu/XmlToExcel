@@ -1,12 +1,12 @@
 /**
  * Copyright (C) 2016 The yuhaiyang Android Source Project
- * <p/>
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p/>
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p/>
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,17 +23,43 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.util.CellRangeAddress;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Excel 工具类
  */
 public class ExcelUtils {
+
+    public static List<Cistern> parse(String path) throws Exception {
+        List<Cistern> cisternList = new ArrayList<>();
+        POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream(path));
+        //2.得到Excel工作簿对象
+        HSSFWorkbook wb = new HSSFWorkbook(fs);
+        //3.得到Excel工作表对象
+        HSSFSheet sheet = wb.getSheetAt(0);
+        //总行数
+        int trLength = sheet.getLastRowNum();
+        //4.得到Excel工作表的行
+        for (int i = 1; i < trLength; i++) {
+            HSSFRow row = sheet.getRow(i);
+            HSSFCell idCell = row.getCell(0);
+            Cistern cistern = new Cistern(idCell.getStringCellValue());
+            for (int j = 1; j < row.getLastCellNum(); j++) {
+                HSSFCell cell = row.getCell(j);
+                cistern.addValue(cell.getStringCellValue());
+            }
+            cisternList.add(cistern);
+        }
+        return cisternList;
+    }
 
     public static void create(List<Cistern> dates) throws Exception {
         if (dates == null || dates.isEmpty()) {

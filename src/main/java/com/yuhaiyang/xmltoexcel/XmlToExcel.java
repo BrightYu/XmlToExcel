@@ -1,12 +1,12 @@
 /**
  * Copyright (C) 2016 The yuhaiyang Android Source Project
- * <p/>
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p/>
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p/>
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,7 +25,10 @@ public class XmlToExcel {
 
     public static void main(String[] args) throws Exception {
         System.out.printf("main");
-        List<Cistern> datas = XmlUtils.parse("D://strings.xml");
-        ExcelUtils.create(datas);
+//        List<Cistern> datas = XmlUtils.parse("D://strings.xml");
+//        ExcelUtils.create(datas);
+
+        List<Cistern> datas = ExcelUtils.parse("D://languages.xls");
+        XmlUtils.create(datas);
     }
 }
