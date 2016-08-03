@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.yuhaiyang.xmltoexcel;
+package com.yuhaiyang.xmltoexcel.model;
 
 import java.util.ArrayList;
 import java.util.List;

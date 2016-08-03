@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.yuhaiyang.xmltoexcel;
+package com.yuhaiyang.xmltoexcel.constant;
 
 /**
  * Bright 于海洋
