@@ -27,12 +27,14 @@ public abstract class BasePanel extends JPanel implements ActionListener {
     private JButton mConvertButton;
 
     public BasePanel(JFrame frame) {
-        super(new GridLayout(2, 1));
+        super(new GridLayout(5, 1));
         mJframe = frame;
         mFileChooser = new JFileChooser();
 
+        add(new Panel());
         Panel selectContent = new Panel();
         add(selectContent);
+        add(new Panel());
         Panel ensureContent = new Panel();
         add(ensureContent);
 
@@ -41,10 +43,10 @@ public abstract class BasePanel extends JPanel implements ActionListener {
         selectContent.add(mSelectButton);
 
         mPathText = new JTextField(20);
-        selectContent.add(mPathText);
+        selectContent.add(mPathText, BorderLayout.CENTER);
 
 
-        mConvertButton = new JButton("确定");
+        mConvertButton = new JButton("转换");
         mConvertButton.addActionListener(this);
         ensureContent.add(mConvertButton, BorderLayout.CENTER);
     }
@@ -60,7 +62,7 @@ public abstract class BasePanel extends JPanel implements ActionListener {
         } else if (source == mConvertButton) {
             String path = mPathText.getText();
             if (path == null || path.length() == 0) {
-                MyDialog dialog = new MyDialog(mJframe, "请选择文件");
+                MyDialog dialog = new MyDialog(mJframe, "请选择文件", "请选择文件");
                 dialog.setVisible(true);
             } else {
                 doConvert(path);

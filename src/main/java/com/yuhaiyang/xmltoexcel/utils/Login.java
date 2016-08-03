@@ -6,6 +6,7 @@ package com.yuhaiyang.xmltoexcel.utils;
  * author：ywq
  */
 
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -28,6 +29,7 @@ public class Login extends JFrame {
     public Login() {
         //创建面板
         jp1 = new JPanel();
+        jp1.setBackground(Color.BLUE);
         jp2 = new JPanel();
         jp3 = new JPanel();
         //创建标签

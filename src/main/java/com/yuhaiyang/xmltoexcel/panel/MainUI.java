@@ -24,7 +24,7 @@ public class MainUI extends JFrame {
             }
         });
 
-        this.setSize(350, 196);//窗体大小
+        this.setSize(380, 213);//窗体大小
         this.setLocationRelativeTo(null);//在屏幕中间显示(居中显示)
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//退出关闭JFrame
         this.setVisible(true);//显示窗体

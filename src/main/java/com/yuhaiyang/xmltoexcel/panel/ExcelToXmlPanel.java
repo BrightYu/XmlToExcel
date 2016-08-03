@@ -2,8 +2,8 @@ package com.yuhaiyang.xmltoexcel.panel;
 
 import com.yuhaiyang.xmltoexcel.model.Cistern;
 import com.yuhaiyang.xmltoexcel.ui.MyDialog;
+import com.yuhaiyang.xmltoexcel.ui.ResultDialog;
 import com.yuhaiyang.xmltoexcel.utils.ExcelUtils;
-import com.yuhaiyang.xmltoexcel.utils.StringUtils;
 import com.yuhaiyang.xmltoexcel.utils.XmlUtils;
 
 import java.io.File;
@@ -28,11 +28,12 @@ public class ExcelToXmlPanel extends BasePanel {
 
             List<Cistern> datas = ExcelUtils.parse(path);
             String reuslt = XmlUtils.create(datas, parentPath);
-            MyDialog dialog = new MyDialog(mJframe, "文件已经转换完毕", StringUtils.plusString("文件路径：", reuslt));
+            ResultDialog dialog = new ResultDialog(mJframe, reuslt);
             dialog.setVisible(true);
         } catch (Exception exception) {
             MyDialog dialog = new MyDialog(mJframe, "转换报错", exception.toString());
             dialog.setVisible(true);
+
         }
     }
 }
