@@ -24,6 +24,13 @@ sourceSets {
     }
 }
 
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.yuhaiyang.xmltoexcel.XmlToExcel'
+    }
+}
+
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
