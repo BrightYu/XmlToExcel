@@ -62,28 +62,34 @@ public class XmlUtils {
             System.out.printf("XmlUtils,  items is null");
             return cisternList;
         }
-
+        String name, value;
         for (int i = 0; i < items.getLength(); i++) {
             Node item = items.item(i);
-            String name = item.getAttributes().getNamedItem("name").getNodeValue();
-            Cistern cistern = new Cistern(name);
-            NodeList properties = item.getChildNodes();
-            for (int j = 0; j < properties.getLength(); j++) {
-                Node node = properties.item(j);
-                String nodeName = node.getNodeName();
-                String value;
-                if (EXTRA_NODE_NAME.equals(nodeName)) {
-                    value = PLACE_HOLDER;
-                } else {
-                    value = node.getTextContent();
-                }
-                cistern.addValue(value);
-            }
+            name = item.getAttributes().getNamedItem("name").getNodeValue();
+            value = item.getTextContent();
+            Cistern cistern = new Cistern(name, value);
             cisternList.add(cistern);
         }
         return cisternList;
     }
 
+    /**
+     * 备份使用
+     */
+    private String parseNext(Node item) {
+        NodeList properties = item.getChildNodes();
+        String value = null;
+        for (int j = 0; j < properties.getLength(); j++) {
+            Node node = properties.item(j);
+            String nodeName = node.getNodeName();
+            if (EXTRA_NODE_NAME.equals(nodeName)) {
+                value = PLACE_HOLDER;
+            } else {
+                value = node.getTextContent();
+            }
+        }
+        return value;
+    }
 
     public static String create(List<Cistern> dates, String path) throws Exception {
         StringBuilder target = new StringBuilder();

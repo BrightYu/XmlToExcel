@@ -31,6 +31,7 @@ public class XmlToExcelPanel extends BasePanel {
             ResultDialog dialog = new ResultDialog(mJframe, reuslt);
             dialog.setVisible(true);
         } catch (Exception exception) {
+            System.out.println("exception = " + exception.toString());
             MyDialog dialog = new MyDialog(mJframe, "转换报错", exception.toString());
             dialog.setVisible(true);
         }

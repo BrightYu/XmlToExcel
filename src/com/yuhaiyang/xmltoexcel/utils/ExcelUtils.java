@@ -24,6 +24,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -55,6 +56,7 @@ public class ExcelUtils {
             Cistern cistern = new Cistern(idCell.getStringCellValue());
             for (int j = 1; j < row.getLastCellNum(); j++) {
                 HSSFCell cell = row.getCell(j);
+                cell.setCellType(Cell.CELL_TYPE_STRING);
                 cistern.addValue(cell.getStringCellValue());
             }
             cisternList.add(cistern);
@@ -120,6 +122,10 @@ public class ExcelUtils {
             header.setCellStyle(headerStyle);
         }
 
+        if (valueSize <= 1) {
+            System.out.printf("valueSize is <=1 ");
+            return;
+        }
         sheet.addMergedRegion(new CellRangeAddress(
                 0, // 起始行
                 0, // 结束行
