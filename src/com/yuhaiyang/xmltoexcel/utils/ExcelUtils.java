@@ -50,7 +50,7 @@ public class ExcelUtils {
         //总行数
         int trLength = sheet.getLastRowNum();
         //4.得到Excel工作表的行
-        for (int i = 1; i < trLength; i++) {
+        for (int i = 1; i <= trLength; i++) {
             HSSFRow row = sheet.getRow(i);
             HSSFCell idCell = row.getCell(0);
             Cistern cistern = new Cistern(idCell.getStringCellValue());
